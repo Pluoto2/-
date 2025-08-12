@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>我的摄影小站</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif}
+    body{background:#f4f4f4;padding:20px;color:#333}
+    h1{text-align:center;margin-bottom:30px;font-size:28px}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+    .card{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.1);cursor:pointer;transition:transform .3s}
+    .card:hover{transform:translateY(-4px)}
+    .card img{width:100%;height:200px;object-fit:cover;display:block}
+    .card .title{padding:10px 12px;font-size:14px;text-align:center;background:#fafafa;color:#555}
+    /* 灯箱 */
+    .lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);display:none;justify-content:center;align-items:center;z-index:999}
+    .lightbox img{max-width:90%;max-height:90%;border-radius:4px}
+    .lightbox .close{position:absolute;top:20px;right:30px;color:#fff;font-size:40px;cursor:pointer}
+</style>
+</head>
+<body>
+
+<h1>我的摄影小站 · 精选 13 张</h1>
+
+<!-- 图片网格 -->
+<div class="gallery">
+    <!-- 按文件顺序列出 -->
+    <div class="card"><img src="都市晚霞.jpg" alt="都市晚霞"><div class="title">都市晚霞.jpg</div></div>
+    <div class="card"><img src="繁花盎然生机.jpg" alt="繁花盎然生机"><div class="title">繁花盎然生机.jpg</div></div>
+    <div class="card"><img src="海州往事.jpg" alt="海州往事"><div class="title">海州往事.jpg</div></div>
+    <div class="card"><img src="花开有意 花落无心.jpg" alt="花开有意 花落无心"><div class="title">花开有意 花落无心.jpg</div></div>
+    <div class="card"><img src="美术馆.jpg" alt="美术馆"><div class="title">美术馆.jpg</div></div>
+    <div class="card"><img src="棉花云.jpg" alt="棉花云"><div class="title">棉花云.jpg</div></div>
+    <div class="card"><img src="三色云彩.jpg" alt="三色云彩"><div class="title">三色云彩.jpg</div></div>
+    <div class="card"><img src="夕阳.jpg" alt="夕阳"><div class="title">夕阳.jpg</div></div>
+    <div class="card"><img src="夕阳西落.jpg" alt="夕阳西落"><div class="title">夕阳西落.jpg</div></div>
+    <div class="card"><img src="雁塔明红.jpg" alt="雁塔明红"><div class="title">雁塔明红.jpg</div></div>
+    <div class="card"><img src="鱼鳞云装上晚霞.jpg" alt="鱼鳞云装上晚霞"><div class="title">鱼鳞云装上晚霞.jpg</div></div>
+    <div class="card"><img src="雨中玫瑰.jpg" alt="雨中玫瑰"><div class="title">雨中玫瑰.jpg</div></div>
+    <div class="card"><img src="云的色彩.jpg" alt="云的色彩"><div class="title">云的色彩.jpg</div></div>
+</div>
+
+<!-- 灯箱 -->
+<div class="lightbox">
+    <span class="close">&times;</span>
+    <img>
+</div>
+
+<script>
+// 简单灯箱
+const cards = document.querySelectorAll('.card');
+const lightbox = document.querySelector('.lightbox');
+const lightImg = lightbox.querySelector('img');
+const closeBtn = lightbox.querySelector('.close');
+
+cards.forEach(card=>{
+    card.addEventListener('click',()=>{
+        const src = card.querySelector('img').src;
+        const alt = card.querySelector('img').alt;
+        lightImg.src = src;
+        lightImg.alt = alt;
+        lightbox.style.display = 'flex';
+    });
+});
+closeBtn.addEventListener('click',()=>lightbox.style.display='none');
+lightbox.addEventListener('click',e=>{if(e.target===lightbox)lightbox.style.display='none'});
+</script>
+
+</body>
+</html>
